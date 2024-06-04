@@ -8,12 +8,9 @@ import (
 
 var ErrBannerNotFound = errors.New("banner file not found")
 
-func HandleBanner(args []string) ([]string, error) {
-	bannerFile := "standard"
-	if len(args) == 2 {
-		bannerFile = args[1]
-	}
-	data, err := os.ReadFile(bannerFile + ".txt")
+func HandleBanner(args string) ([]string, error) {
+	bannerFile := args
+	data, err := os.ReadFile("./../" + bannerFile + ".txt")
 	splitted := strings.Split(string(data), "\n")
 
 	if err != nil {

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Web</title>
+    <link rel="stylesheet" href="/statics/style.css">
+</head>
+<body>
+    <header>
+        <h3>Ascii-Art-Web Project</h3>
+        <img src="/statics/icon.png" alt="Logo" class="logo">
+    </header>
+    <div class="container">
+        <h1>ASCII Art Web</h1>
+        <form action="/ascii-art" method="post">
+            <label for="text">Text:</label>
+            <input type="text" id="text" name="text" required>
+            <br>
+            <label for="banner">Select Banner:</label>
+            <select id="banner" name="banner">
+                <option value="standard">Standard</option>
+                <option value="shadow">Shadow</option>
+                <option value="thinkertoy">Thinkertoy</option>
+            </select>
+            <br>
+            <button type="submit">Generate ASCII Art</button>
+        </form>
+        {{if .Result}}
+        <div class="result">
+            <h1>ASCII Art Result</h1>
+            <pre>{{.Result}}</pre>
+        </div>
+        {{end}}
+    </div>
+</body>
+</html>

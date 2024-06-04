@@ -9,12 +9,13 @@ import (
 )
 
 type PageData struct {
+	Banner string
 	Result string
 }
 
 func main() {
 	http.HandleFunc("/", handleInput)
-	http.HandleFunc("/utlis", handleAsciiArt)
+	http.HandleFunc("/ascii-art", handleAsciiArt)
 	http.Handle("/statics/", http.StripPrefix("/statics/", http.FileServer(http.Dir("../statics/"))))
 	fmt.Println("Starting server at port 8080")
 	fmt.Println("URL : http://localhost:8080")
@@ -41,9 +42,9 @@ func handleAsciiArt(w http.ResponseWriter, r *http.Request) {
 	banner := r.FormValue("banner")
 	bannerData, _ := utils.HandleBanner(banner)
 	asciiArt := utils.PrintAscii(text, bannerData)
-	data := PageData{Result: asciiArt}
+	data := PageData{Result: asciiArt, Banner: banner}
 
-	tmpl, err := template.ParseFiles("../statics/input.html/{{.Result}}")
+	tmpl, err := template.ParseFiles("../statics/input.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
