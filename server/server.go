@@ -19,7 +19,7 @@ func main() {
 	http.Handle("/statics/", http.StripPrefix("/statics/", http.FileServer(http.Dir("../statics/"))))
 	fmt.Println("Starting server at port 8080")
 	fmt.Println("URL : http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8082", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func handleInput(w http.ResponseWriter, r *http.Request) {
